@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException
-from app.schemas import ConversationCreate, Conversation
-from app.services import conversation_service
+from fastapi import APIRouter
+from app.schemas import ConversationCreate
+from app.services import create_conversation
 
-conversation_routes = APIRouter()
+router = APIRouter()
 
-@conversation_routes.post("/conversations")
-def create_conversation(conversation: ConversationCreate):
-    return conversation_service.create_conversation(conversation)
+@router.post("/")
+def create_conversation_route(conv: ConversationCreate):
+    conv_id = create_conversation(conv)
+    return {"id": conv_id}

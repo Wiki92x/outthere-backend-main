@@ -4,3 +4,4 @@ pydantic
 python-dotenv
 mysql-connector-python
 pymysql
+websockets

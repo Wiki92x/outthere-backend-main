@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException
-from app.schemas import UserCreate, User
-from app.services import user_service
+from fastapi import APIRouter
+from app.schemas import UserCreate
+from app.services import create_user
 
-user_routes = APIRouter()
+router = APIRouter()
 
-@user_routes.post("/users")
-def create_user(user: UserCreate):
-    return user_service.create_user(user)
+@router.post("/")
+def create_user_route(user: UserCreate):
+    user_id = create_user(user)
+    return {"id": user_id}

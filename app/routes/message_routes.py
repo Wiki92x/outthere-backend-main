@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException
-from app.schemas import MessageCreate, Message
-from app.services import message_service
+from fastapi import APIRouter
+from app.schemas import MessageCreate
+from app.services import create_message
 
-message_routes = APIRouter()
+router = APIRouter()
 
-@message_routes.post("/messages")
-def create_message(message: MessageCreate):
-    return message_service.create_message(message)
+@router.post("/")
+def create_message_route(msg: MessageCreate):
+    msg_id = create_message(msg)
+    return {"id": msg_id}
