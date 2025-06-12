@@ -1,7 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from app.schemas import ConversationCreate, Conversation
+from app.services import conversation_service
 
-user_routes = APIRouter()
+conversation_routes = APIRouter()
 
-@user_routes.get("/users")
-async def get_users():
-    return {"message": "User route works"}
+@conversation_routes.post("/conversations")
+def create_conversation(conversation: ConversationCreate):
+    return conversation_service.create_conversation(conversation)
