@@ -1,10 +1,7 @@
 from fastapi import APIRouter
-from app.schemas import MessageCreate
-from app.services import create_message
 
-router = APIRouter()
+message_routes = APIRouter()
 
-@router.post("/")
-def create_message_route(msg: MessageCreate):
-    msg_id = create_message(msg)
-    return {"id": msg_id}
+@message_routes.get("/")
+async def read_messages():
+    return {"message": "Message route operational"}

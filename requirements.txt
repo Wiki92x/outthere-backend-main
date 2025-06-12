@@ -1,7 +1,5 @@
 fastapi
 uvicorn
-pydantic
-python-dotenv
 mysql-connector-python
-pymysql
+python-dotenv
 websockets

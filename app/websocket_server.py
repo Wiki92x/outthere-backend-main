@@ -4,6 +4,7 @@ import json
 import logging
 
 logging.basicConfig(level=logging.INFO)
+
 clients = {}
 
 async def register(websocket, user_id):
@@ -17,7 +18,10 @@ async def unregister(user_id):
 async def private_message(sender_id, receiver_id, message):
     receiver_ws = clients.get(receiver_id)
     if receiver_ws:
-        payload = json.dumps({"from": sender_id, "message": message})
+        payload = json.dumps({
+            "from": sender_id,
+            "message": message
+        })
         await receiver_ws.send(payload)
 
 async def handler(websocket):
@@ -37,6 +41,7 @@ async def handler(websocket):
             content = data.get("message")
             if receiver_id and content:
                 await private_message(user_id, receiver_id, content)
+
     except Exception as e:
         logging.error(f"Error: {e}")
     finally:
