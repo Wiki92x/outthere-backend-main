@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+user_routes = APIRouter()
 
-@router.get("/users/test")
-def test_user():
-    return {"message": "User route working!"}
+@user_routes.get("/users")
+def get_users():
+    return {"message": "User list"}

@@ -1,9 +1,4 @@
 fastapi
 uvicorn
-pydantic
-pydantic[email]
-pymysql
-mysql-connector-python
+psycopg2-binary
 python-dotenv
-sqlalchemy
-PyJWT
