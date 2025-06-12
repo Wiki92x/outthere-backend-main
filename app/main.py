@@ -5,10 +5,6 @@ from app.routes.message_routes import message_routes
 
 app = FastAPI()
 
-app.include_router(user_routes)
-app.include_router(conversation_routes)
-app.include_router(message_routes)
-
-@app.get("/")
-def read_root():
-    return {"message": "Backend is finally working!"}
+app.include_router(user_routes, prefix="/users", tags=["Users"])
+app.include_router(conversation_routes, prefix="/conversations", tags=["Conversations"])
+app.include_router(message_routes, prefix="/messages", tags=["Messages"])
