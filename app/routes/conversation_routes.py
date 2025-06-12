@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-conversation_routes = APIRouter()
+user_routes = APIRouter()
 
-@conversation_routes.get("/conversations")
-def get_conversations():
-    return {"message": "Conversation list"}
+@user_routes.get("/users")
+async def get_users():
+    return {"message": "User route works"}

@@ -1,12 +1,14 @@
 from fastapi import FastAPI
-from app.routes import user_routes, conversation_routes, message_routes
+from routes.user_routes import user_routes
+from routes.conversation_routes import conversation_routes
+from routes.message_routes import message_routes
 
 app = FastAPI()
 
-app.include_router(user_routes, prefix="/users", tags=["Users"])
-app.include_router(conversation_routes, prefix="/conversations", tags=["Conversations"])
-app.include_router(message_routes, prefix="/messages", tags=["Messages"])
+app.include_router(user_routes)
+app.include_router(conversation_routes)
+app.include_router(message_routes)
 
 @app.get("/")
-def read_root():
-    return {"status": "Backend Phase 3 Ready"}
+def health_check():
+    return {"message": "Backend is running!"}
